@@ -167,3 +167,119 @@ contract stobyte{
 
 #### 三、汉字字符串或特殊字符的字符串转换为bytes
 
+```
+
+pragma solidity 0.4.23;
+
+contract stobyte{
+    string a = "中国是很美丽的";
+    // string a = "a!+&520";
+    bytes public res = bytes(a);
+    uint public length = res.length;
+    
+    function setAFirstChar() public{
+        bytes(a)[0] = "C";
+    }
+    
+    function getA() public constant returns(string){
+        return a;
+    }
+    
+    
+}
+
+```
+
+![特殊字符.gif](https://upload-images.jianshu.io/upload_images/1053458-2f080f9a6e0c7972.gif?imageMogr2/auto-orient/strip)
+
+#### 四、bytes可变数组的创建
+
+```
+
+pragma solidity 0.4.23;
+
+contract createBytes{
+   bytes  b = new bytes(1);//创建
+   
+   function bLength()
+        public constant
+        returns(uint)
+   {
+       return b.length;
+   }
+   
+   function addToB(byte s,uint index) 
+        public
+        returns(bytes)
+   {
+       b[index] = s;
+   }
+   
+   function getB()
+        public constant
+        returns(bytes)
+   {
+       return b;
+   }
+    
+    //设置数组长度
+    function setBLength(uint length) public
+    {
+        b.length = length;
+    }
+
+    //清空数组
+    function clearBytes()
+        public
+    {
+
+		//b.length = 0;
+        delete b;
+    }
+
+}  
+
+```
+
+![创建bytes字节数组.gif](https://upload-images.jianshu.io/upload_images/1053458-432e13e929961e7e.gif?imageMogr2/auto-orient/strip)
+
+
+#### 五、bytes可变数组length和push两个函数的使用案例
+```
+
+pragma solidity 0.4.23;
+
+contract createBytes{
+   bytes  b = new bytes(1);
+   
+   function bLength()
+        public constant
+        returns(uint)
+   {
+       return b.length;
+   }
+   
+   function getB()
+        public constant
+        returns(bytes)
+   {
+       return b;
+   }
+    
+ 
+
+   //往字节数组中添加字节
+   function pushAbyte(byte s)
+        public
+   {
+       b.push(s);
+   }
+
+
+}  
+```
+
+
+![push的使用.gif](https://upload-images.jianshu.io/upload_images/1053458-c9168dd1fda52bbb.gif?imageMogr2/auto-orient/strip)
+
+
