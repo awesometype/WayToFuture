@@ -1,4 +1,4 @@
-[语法](Solidity语法)
+[语法](Solidity语法.md)
 
 ### paper翻译
 
