@@ -48,14 +48,14 @@ class Block:
         for i, message in enumerate(self.messagelist):#每一个交易记录都要校验
             message.validate()
             if i > 0 and message.pre_hash != self.messagelist[i-1].hash:
-                 raise InvalidMessage("无效的block，{}交易记录已经被修改了".format(i)+str(self))
+                 raise InvalidBlock("无效的block，{}交易记录已经被修改了".format(i)+str(self))
         return str(self) + "数据OK"
 
     def __repr__(self):#描述
         return "money block = hash:{},prehash:{},len:{},time:{},data:{}".format(self.hash,self.pre_hash,len(self.messagelist),self.timeStamp,self.messagelist)
 
 
-class InvalidMessage(Exception):#异常
+class InvalidBlock(Exception):#异常
     def __init__(self, *args, **kwargs):
         Exception.__init__(self, *args, **kwargs)
 
