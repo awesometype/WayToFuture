@@ -24,7 +24,6 @@ class Transaction:
     #     return str(self.payer) + "pay" + str(self.recer) + str(self.money) + str(self.timeStamp)
 
 
-
 if __name__ == "__main__":
     t1 = Transaction("mudy","xiaoming",12000)
     print(t1)

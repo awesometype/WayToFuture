@@ -35,6 +35,8 @@ class DaDaMessage:#交易记录类
         if self.hash != self._hash_message():#判断消息链是不是被修改了
             raise InvalidMessage("交易的哈希连接被修改")
 
+        return  "数据正常" + str(self)
+
     def __repr__(self):#返回对象的基本信息
         mystr = "hash:{},prev_hash:{},data:{}".format(self.hash,self.pre_hash,self.data)
         return mystr
