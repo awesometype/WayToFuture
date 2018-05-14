@@ -9,6 +9,7 @@
 关于交易信息
 '''
 import datetime,hashlib
+from Transtion import Transaction
 
 class DaDaMessage:#交易记录类
     def __init__(self, data): #初始化
@@ -48,10 +49,16 @@ class InvalidMessage(Exception):#异常
 
 
 if __name__ == "__main__":
+
     try:
-        m1 = DaDaMessage("母东永给小明的十个币")
-        m2 = DaDaMessage("母东永给小李的十一个币")
-        m3 = DaDaMessage("母东永给小张的十二个币")
+        t1 = Transaction("mudy", "xiaoming", 11000)
+        t2 = Transaction("mudy2", "xiaoming2", 12000)
+        t3 = Transaction("mudy3", "xiaoming3", 13000)
+
+
+        m1 = DaDaMessage(t1)
+        m2 = DaDaMessage(t2)
+        m3 = DaDaMessage(t3)
 
         m1.seal()
         m2.link(m1)
