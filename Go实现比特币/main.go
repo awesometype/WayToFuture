@@ -17,4 +17,5 @@ func main() {
 		fmt.Printf("上一块哈希%x 数据%s \n",block.PrevBlockHash,block.Data)
 
 	}
+	
 }
