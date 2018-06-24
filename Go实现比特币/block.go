@@ -6,9 +6,9 @@
 package main
 
 import (
-	"strconv"
-	"bytes"
-	"crypto/sha256"
+	//"strconv"
+	//"bytes"
+	//"crypto/sha256"
 	"time"
 )
 
@@ -17,8 +17,9 @@ type Block struct {
 	Data []byte //交易数据 存储到硬盘文件中
 	PrevBlockHash []byte //上一块的哈希
 	Hash []byte //当前块的哈希
+	Nonce int //工作量证明
 }
-
+/*
 //设定结构体对象的哈希
 func (block *Block)SetHash()  {
 	//处理当前的时间，转换为10进制的字符串，再转化为字节集
@@ -28,13 +29,18 @@ func (block *Block)SetHash()  {
  	//计算出hash地址
  	hash := sha256.Sum256(headers)
  	block.Hash = hash[:]
-}
+}*/
 
 //创建一个区块
 func NewBlock(data string,prevHash []byte)  *Block{
 
-	block := &Block{time.Now().Unix(),[]byte(data),prevHash,[]byte{}}
-	block.SetHash()//设置当前块的hash
+	block := &Block{time.Now().Unix(),[]byte(data),prevHash,[]byte{},0}
+	pow := NewProofOfWork(block)//挖矿附加这个区块
+	nonce,hash := pow.run()
+	block.Hash = hash[:]
+	block.Nonce = nonce
+
+	//block.SetHash()//设置当前块的hash
 	return block
 }
 

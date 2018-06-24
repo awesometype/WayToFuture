@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-func main() {
+func main1() {
 
 	for i := 0; i< 100000000; i++ {
 		data := sha256.Sum256([]byte(strconv.Itoa(i)))

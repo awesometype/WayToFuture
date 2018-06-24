@@ -5,7 +5,10 @@
 //Blog:txmudy.cn
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+)
 
 func main() {
 	bc := NewBlockChain()//创建一个区块链
@@ -15,7 +18,8 @@ func main() {
 
 	for _,block := range bc.blocks{
 		fmt.Printf("上一块哈希%x 数据%s \n",block.PrevBlockHash,block.Data)
-
+		pow := NewProofOfWork(block)//校验工作量
+		fmt.Printf("pow %s \n",strconv.FormatBool(pow.Validate()))
 	}
 	
 }
