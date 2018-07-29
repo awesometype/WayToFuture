@@ -49,7 +49,7 @@ func (pow *ProofOfWork)run()(int,[]byte){
 	for nonce < maxNonce{
 		data := pow.prepareData(nonce)//准备好的数据
 		hash = sha256.Sum256(data)//计算出哈希
-		fmt.Printf("\r %x",hash)//打印显示哈希
+		fmt.Printf("\r--- %x",hash)//打印显示哈希
 		hashInt.SetBytes(hash[:])//获取要对比的数据
 		if hashInt.Cmp(pow.target) == -1{//挖矿的校验
 			break
